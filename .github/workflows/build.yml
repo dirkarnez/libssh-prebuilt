@@ -54,7 +54,7 @@ jobs:
 
       - shell: cmd
         run: |
-          cd /d "${{ github.workspace }}\cmake-3.24.0-windows-x86_64\share\cmake-3.24\Modules\" &&^
+          cd /d "${{ github.workspace }}\cmake-3.26.1-windows-x86_64\share\cmake-3.26\Modules\" &&^
           del /f FindOpenSSL.cmake &&^
           dir
           

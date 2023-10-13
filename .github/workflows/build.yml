@@ -44,9 +44,9 @@ jobs:
           curl ${{ matrix.compiler.url }} -L --output compiler &&^
           7z.exe x compiler
           
-      - name: curl cmake-3.24.0-windows-x86_64.zip
+      - name: curl cmake-3.26.1-windows-x86_64
         shell: cmd
-        run: curl https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-windows-x86_64.zip -L --output cmake-3.24.0-windows-x86_64.zip && dir && 7z.exe x cmake-3.24.0-windows-x86_64.zip
+        run: curl https://github.com/Kitware/CMake/releases/download/v3.26.1/cmake-3.26.1-windows-x86_64.zip -L -O && dir && 7z.exe x cmake-3.26.1-windows-x86_64.zip
 
       - name: curl PortableGit-2.38.1-64-bit.7z.exe
         shell: cmd
@@ -91,12 +91,11 @@ jobs:
             set PATH=^
             ${{ github.workspace }}\mingw64;^
             ${{ github.workspace }}\mingw64\bin;^
-            ${{ github.workspace }}\cmake-3.24.0-windows-x86_64\bin;
+            ${{ github.workspace }}\cmake-3.26.1-windows-x86_64\bin;
             set CD_LINUX=%CD:\=/%
             gcc --version &&^
             cd ${{ env.libraryName }} &&^
             cmake.exe -G"MinGW Makefiles" ^
-            -DCMAKE_POLICY_DEFAULT_CMP0074=NEW ^
             -DCMAKE_BUILD_TYPE=Release ^
             -DBUILD_SHARED_LIBS=OFF ^
             -DOpenSSL_DIR="%CD_LINUX%/openssl-v3.1.3-x86_64-8.1.0-release-posix-seh-rt_v6-rev0" ^
@@ -104,6 +103,7 @@ jobs:
             -DZLIB_USE_STATIC_LIBS=ON ^
             -DCMAKE_INSTALL_PREFIX="cmake-build/${{ env.cmakeInstallationPath }}" -B./cmake-build &&^
             cd cmake-build && cmake --build . --config Release && cmake --install . 
+#  -DCMAKE_POLICY_DEFAULT_CMP0074=NEW ^
 
       - name: Archive Release
         uses: thedoctor0/zip-release@master

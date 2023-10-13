@@ -96,6 +96,7 @@ jobs:
             gcc --version &&^
             cd ${{ env.libraryName }} &&^
             cmake.exe -G"MinGW Makefiles" ^
+            -DCMAKE_POLICY_DEFAULT_CMP0074=NEW ^
             -DCMAKE_BUILD_TYPE=Release ^
             -DBUILD_SHARED_LIBS=OFF ^
             -DZLIB_ROOT="%CD_LINUX%/zlib-v1.2.13-mingw64-x86_64-posix-seh-rev0-8.1.0" ^

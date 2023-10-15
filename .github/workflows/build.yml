@@ -27,7 +27,7 @@ jobs:
     env:
       libraryName: libssh
       cmakeInstallationPath: libssh-installation
-      tagName: release-0-5-0
+      tagName: libssh-0.10.4
     steps:
     
       - uses: actions/checkout@v4
